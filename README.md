@@ -2,8 +2,6 @@
 
 An RDF knowledge graph and small RDFS vocabulary for a fictional streaming service. It models films, a series and its episodes, contributors and their roles, genres, language versions, regional licences and availability periods. Built in Protégé, stored and queried in GraphDB.
 
-Author: Vishal Agarwal (Roll No. 235890336)
-
 ## Files
 
 | File | Description |
@@ -16,15 +14,15 @@ Author: Vishal Agarwal (Roll No. 235890336)
 
 ## Tools
 
-- Protégé [VERSION] – building the vocabulary and individuals
-- GraphDB Free [VERSION] – storing the graph, RDFS inference, SPARQL queries and visualisation
+- Protégé [5.6.9] – building the vocabulary and individuals
+- GraphDB Free [11.5.1] – storing the graph, RDFS inference, SPARQL queries and visualisation
 
 ## Open in Protégé
 
 1. Open Protégé.
 2. **File → Open** → select `streaming_catalogue_final.ttl`.
-3. Browse the **Classes**, **Object properties**, **Data properties** and **Individuals** tabs.
-   Tip: **View → Render by label (rdfs:label)** shows readable names.
+3. Browse the **Classes**, **Object properties**, **Data properties** and **Individuals** tabs.\
+   **View → Render by label (rdfs:label)** shows readable names.
 
 ## Reproduce in GraphDB
 
@@ -53,4 +51,4 @@ Author: Vishal Agarwal (Roll No. 235890336)
 ## Acknowledgements
 
 - Protégé (Stanford University) and GraphDB (Ontotext) were used to build and query the model.
-- Claude (Anthropic) was used for discussion of modelling options, troubleshooting Protégé and GraphDB, checking the triple count, and suggesting SPARQL queries. The modelling, implementation and report are my own work. Details are in the report.
+- Claude (Anthropic) and ChatGPT (OpenAI) was used for discussion of modelling options, troubleshooting Protégé and GraphDB, checking the triple count, and suggesting SPARQL queries. The modelling, implementation and report are my own work. Details are in the report.
