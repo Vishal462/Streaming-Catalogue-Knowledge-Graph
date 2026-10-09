@@ -1,0 +1,69 @@
+# Streaming Catalogue Knowledge Graph - SPARQL queries
+# Run each query separately in GraphDB (SPARQL tab), with the
+# streaming_catalogue repository selected.
+# Copy the PREFIX lines together with the query you want to run.
+
+PREFIX :     <http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+# ---------------------------------------------------------------
+# Q1. Total number of triples
+# Expected: 220 with "Include inferred" OFF, 342 with it ON
+# ---------------------------------------------------------------
+SELECT (COUNT(*) AS ?triples) WHERE { ?s ?p ?o }
+
+
+# ---------------------------------------------------------------
+# Q2. Which person holds which role on which work
+# Shows the contributor-credit pattern: Maya Sen is Actor on
+# Riverline but Director on City Loop.
+# Expected: 5 rows
+# ---------------------------------------------------------------
+SELECT ?work ?person ?role WHERE {
+  ?w :hasCredit ?c ;
+     :title ?work .
+  ?c :creditedPerson/rdfs:label ?person ;
+     :creditRole/rdfs:label ?role .
+}
+ORDER BY ?person
+
+
+# ---------------------------------------------------------------
+# Q3. Titles available today, with region and availability window
+# "Active" is computed from the dates, not read from a label.
+# Expected (as of Oct 2026): City Loop and Last Signal in Singapore;
+# Riverline (India) is excluded because its window ended 2025-12-31.
+# ---------------------------------------------------------------
+SELECT ?title ?region ?from ?until WHERE {
+  ?lic :hasAvailability ?a ;
+       :licensedForRegion/rdfs:label ?region .
+  ?a :forWork/:title ?title ;
+     :availableFrom ?from ;
+     :availableUntil ?until .
+  BIND(xsd:date(SUBSTR(STR(NOW()), 1, 10)) AS ?today)
+  FILTER (?from <= ?today && ?until >= ?today)
+}
+
+
+# ---------------------------------------------------------------
+# Q4. Episodes of City Loop in order, with typed durations
+# Expected: 3 rows (E1 PT45M, E2 PT48M, E3 PT50M)
+# ---------------------------------------------------------------
+SELECT ?num ?title ?dur WHERE {
+  ?e :partOfSeries :CityLoop ;
+     :episodeNumber ?num ;
+     :title ?title ;
+     :duration ?dur .
+}
+ORDER BY ?num
+
+
+# ---------------------------------------------------------------
+# Q5. RDFS inference check
+# No individual is directly typed :CreativeWork.
+# Expected: 0 rows with "Include inferred" OFF;
+#           6 rows (Riverline, LastSignal, CityLoop, E1, E2, E3)
+#           with it ON, inferred via rdfs:subClassOf.
+# ---------------------------------------------------------------
+SELECT ?work WHERE { ?work a :CreativeWork }
