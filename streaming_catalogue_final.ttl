@@ -27,67 +27,78 @@ xsd:duration rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/creditRole
 :creditRole rdf:type owl:ObjectProperty ;
             rdfs:domain :ContributorCredit ;
-            rdfs:range :Role .
+            rdfs:range :Role ;
+            rdfs:comment "The role held in a contributor credit."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/creditedPerson
 :creditedPerson rdf:type owl:ObjectProperty ;
                 rdfs:domain :ContributorCredit ;
-                rdfs:range :Person .
+                rdfs:range :Person ;
+                rdfs:comment "The person named in a contributor credit."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/forWork
 :forWork rdf:type owl:ObjectProperty ;
          rdfs:domain :Availability ;
-         rdfs:range :CreativeWork .
+         rdfs:range :CreativeWork ;
+         rdfs:comment "The creative work an availability period refers to."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/hasAvailability
 :hasAvailability rdf:type owl:ObjectProperty ;
                  rdfs:domain :License ;
-                 rdfs:range :Availability .
+                 rdfs:range :Availability ;
+                 rdfs:comment "Links a licence to an availability period granted under it."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/hasCredit
 :hasCredit rdf:type owl:ObjectProperty ;
            rdfs:domain :CreativeWork ;
-           rdfs:range :ContributorCredit .
+           rdfs:range :ContributorCredit ;
+           rdfs:comment "Links a creative work to a contributor credit."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/hasEpisode
 :hasEpisode rdf:type owl:ObjectProperty ;
             rdfs:domain :Series ;
-            rdfs:range :Episode .
+            rdfs:range :Episode ;
+            rdfs:comment "Links a series to one of its episodes."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/hasGenre
 :hasGenre rdf:type owl:ObjectProperty ;
           rdfs:domain :CreativeWork ;
-          rdfs:range :Genre .
+          rdfs:range :Genre ;
+          rdfs:comment "Links a creative work to its genre."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/hasLanguage
 :hasLanguage rdf:type owl:ObjectProperty ;
              rdfs:domain :CreativeWork ;
-             rdfs:range :Language .
+             rdfs:range :Language ;
+             rdfs:comment "Links a creative work to a language version it is offered in."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/hasLicense
 :hasLicense rdf:type owl:ObjectProperty ;
             rdfs:domain :CreativeWork ;
-            rdfs:range :License .
+            rdfs:range :License ;
+            rdfs:comment "Links a creative work to a licence that covers it."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/licensedForRegion
 :licensedForRegion rdf:type owl:ObjectProperty ;
                    rdfs:domain :License ;
-                   rdfs:range :Region .
+                   rdfs:range :Region ;
+                   rdfs:comment "The region a licence applies to."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/partOfSeries
 :partOfSeries rdf:type owl:ObjectProperty ;
               rdfs:domain :Episode ;
-              rdfs:range :Series .
+              rdfs:range :Series ;
+              rdfs:comment "Links an episode to the series it belongs to."@en .
 
 
 #################################################################
@@ -97,55 +108,64 @@ xsd:duration rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue#availableFrom
 :availableFrom rdf:type owl:DatatypeProperty ;
                rdfs:domain :Availability ;
-               rdfs:range xsd:date .
+               rdfs:range xsd:date ;
+               rdfs:comment "First day a work is offered on the platform."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue#availableUntil
 :availableUntil rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Availability ;
-                rdfs:range xsd:date .
+                rdfs:range xsd:date ;
+                rdfs:comment "Last day a work is offered on the platform."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/availabilityStatus
 :availabilityStatus rdf:type owl:DatatypeProperty ;
                     rdfs:domain :Availability ;
-                    rdfs:range xsd:string .
+                    rdfs:range xsd:string ;
+                    rdfs:comment "Convenience label (active or expired); the availability dates are the source of truth."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/duration
 :duration rdf:type owl:DatatypeProperty ;
           rdfs:domain :CreativeWork ;
-          rdfs:range xsd:duration .
+          rdfs:range xsd:duration ;
+          rdfs:comment "Running time as an ISO 8601 duration, e.g. PT1H52M."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/endDate
 :endDate rdf:type owl:DatatypeProperty ;
          rdfs:domain :License ;
-         rdfs:range xsd:date .
+         rdfs:range xsd:date ;
+         rdfs:comment "Last day of a licence period."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/episodeNumber
 :episodeNumber rdf:type owl:DatatypeProperty ;
                rdfs:domain :Episode ;
-               rdfs:range xsd:integer .
+               rdfs:range xsd:integer ;
+               rdfs:comment "Position of an episode within its series."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/releaseDate
 :releaseDate rdf:type owl:DatatypeProperty ;
              rdfs:domain :CreativeWork ;
-             rdfs:range xsd:date .
+             rdfs:range xsd:date ;
+             rdfs:comment "The date a creative work was first released."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/startDate
 :startDate rdf:type owl:DatatypeProperty ;
            rdfs:domain :License ;
-           rdfs:range xsd:date .
+           rdfs:range xsd:date ;
+           rdfs:comment "First day of a licence period."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/title
 :title rdf:type owl:DatatypeProperty ;
        rdfs:domain :CreativeWork ;
-       rdfs:range xsd:string .
+       rdfs:range xsd:string ;
+       rdfs:comment "The display title of a creative work."@en .
 
 
 #################################################################
@@ -153,54 +173,66 @@ xsd:duration rdf:type rdfs:Datatype .
 #################################################################
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Availability
-:Availability rdf:type owl:Class .
+:Availability rdf:type owl:Class ;
+              rdfs:comment "A period during which a work is actually offered on the platform under a licence; it may be shorter than the licence."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/ContributorCredit
-:ContributorCredit rdf:type owl:Class .
+:ContributorCredit rdf:type owl:Class ;
+                   rdfs:comment "Links one person, one role and one creative work, so a person can hold different roles on different works."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/CreativeWork
-:CreativeWork rdf:type owl:Class .
+:CreativeWork rdf:type owl:Class ;
+              rdfs:comment "A title in the catalogue (film, series or episode), kept separate from licences and availability."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Episode
 :Episode rdf:type owl:Class ;
-         rdfs:subClassOf :CreativeWork .
+         rdfs:subClassOf :CreativeWork ;
+         rdfs:comment "A single instalment that is part of a series."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Film
 :Film rdf:type owl:Class ;
-      rdfs:subClassOf :CreativeWork .
+      rdfs:subClassOf :CreativeWork ;
+      rdfs:comment "A standalone feature-length creative work."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Genre
-:Genre rdf:type owl:Class .
+:Genre rdf:type owl:Class ;
+       rdfs:comment "A category of creative work, such as Drama or Documentary."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Language
-:Language rdf:type owl:Class .
+:Language rdf:type owl:Class ;
+          rdfs:comment "A language in which a version of a creative work is offered."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/License
-:License rdf:type owl:Class .
+:License rdf:type owl:Class ;
+         rdfs:comment "The legal right to stream works in a region for a fixed period."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Person
-:Person rdf:type owl:Class .
+:Person rdf:type owl:Class ;
+        rdfs:comment "A contributor who can be credited on creative works."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Region
-:Region rdf:type owl:Class .
+:Region rdf:type owl:Class ;
+        rdfs:comment "A territory in which works can be licensed."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Role
-:Role rdf:type owl:Class .
+:Role rdf:type owl:Class ;
+      rdfs:comment "A type of contribution such as director, actor or writer."@en .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Series
 :Series rdf:type owl:Class ;
-        rdfs:subClassOf :CreativeWork .
+        rdfs:subClassOf :CreativeWork ;
+        rdfs:comment "A creative work made up of episodes."@en .
 
 
 #################################################################
@@ -213,82 +245,109 @@ xsd:duration rdf:type rdfs:Datatype .
        rdfs:label "Actor"@en .
 
 
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Availability1
-:Availability1 rdf:type owl:NamedIndividual ,
-                        :Availability ;
-               :forWork :Riverline ;
-               :availableFrom "2024-08-15"^^xsd:date ;
-               :availableUntil "2025-12-31"^^xsd:date ;
-               :availabilityStatus "expired" .
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Availability_CityLoop_SG
+:Availability_CityLoop_SG rdf:type owl:NamedIndividual ,
+                                   :Availability ;
+                          :forWork :CityLoop ;
+                          :availableFrom "2026-03-01"^^xsd:date ;
+                          :availableUntil "2027-06-30"^^xsd:date ;
+                          :availabilityStatus "active" .
 
 
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Availability2
-:Availability2 rdf:type owl:NamedIndividual ,
-                        :Availability ;
-               :forWork :LastSignal ;
-               :availableFrom "2026-02-01"^^xsd:date ;
-               :availableUntil "2027-12-31"^^xsd:date ;
-               :availabilityStatus "active" .
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Availability_LastSignal_SG
+:Availability_LastSignal_SG rdf:type owl:NamedIndividual ,
+                                     :Availability ;
+                            :forWork :LastSignal ;
+                            :availableFrom "2026-02-01"^^xsd:date ;
+                            :availableUntil "2027-12-31"^^xsd:date ;
+                            :availabilityStatus "active" .
 
 
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Availability3
-:Availability3 rdf:type owl:NamedIndividual ,
-                        :Availability ;
-               :forWork :CityLoop ;
-               :availableFrom "2026-03-01"^^xsd:date ;
-               :availableUntil "2027-06-30"^^xsd:date ;
-               :availabilityStatus "active" .
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Availability_Riverline_IN
+:Availability_Riverline_IN rdf:type owl:NamedIndividual ,
+                                    :Availability ;
+                           :forWork :Riverline ;
+                           :availableFrom "2024-08-15"^^xsd:date ;
+                           :availableUntil "2025-12-31"^^xsd:date ;
+                           :availabilityStatus "expired" .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/CityLoop
 :CityLoop rdf:type owl:NamedIndividual ,
                    :Series ;
-          :hasCredit :Credit4 ,
-                     :Credit5 ;
-          :hasEpisode :E1 ,
-                      :E2 ,
-                      :E3 ;
+          :hasCredit :Credit_CityLoop_JoPaul ,
+                     :Credit_CityLoop_MayaSen ;
+          :hasEpisode :CityLoop_E1 ,
+                      :CityLoop_E2 ,
+                      :CityLoop_E3 ;
           :hasGenre :Drama ;
           :hasLanguage :English ;
-          :hasLicense :LicenseSingapore ;
+          :hasLicense :License_SG_2026 ;
           :duration "PT2H23M"^^xsd:duration ;
           :releaseDate "2026-03-01"^^xsd:date ;
           :title "City Loop" .
 
 
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Credit1
-:Credit1 rdf:type owl:NamedIndividual ,
-                  :ContributorCredit ;
-         :creditRole :Director ;
-         :creditedPerson :DevRao .
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/CityLoop_E1
+:CityLoop_E1 rdf:type owl:NamedIndividual ,
+                      :Episode ;
+             :partOfSeries :CityLoop ;
+             :duration "PT45M"^^xsd:duration ;
+             :episodeNumber 1 ;
+             :title "City Loop - Episode 1" .
 
 
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Credit2
-:Credit2 rdf:type owl:NamedIndividual ,
-                  :ContributorCredit ;
-         :creditRole :Actor ;
-         :creditedPerson :MayaSen .
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/CityLoop_E2
+:CityLoop_E2 rdf:type owl:NamedIndividual ,
+                      :Episode ;
+             :partOfSeries :CityLoop ;
+             :duration "PT48M"^^xsd:duration ;
+             :episodeNumber 2 ;
+             :title "City Loop - Episode 2" .
 
 
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Credit3
-:Credit3 rdf:type owl:NamedIndividual ,
-                  :ContributorCredit ;
-         :creditRole :Writer ;
-         :creditedPerson :JoPaul .
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/CityLoop_E3
+:CityLoop_E3 rdf:type owl:NamedIndividual ,
+                      :Episode ;
+             :partOfSeries :CityLoop ;
+             :duration "PT50M"^^xsd:duration ;
+             :episodeNumber 3 ;
+             :title "City Loop - Episode 3" .
 
 
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Credit4
-:Credit4 rdf:type owl:NamedIndividual ,
-                  :ContributorCredit ;
-         :creditRole :Director ;
-         :creditedPerson :MayaSen .
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Credit_CityLoop_JoPaul
+:Credit_CityLoop_JoPaul rdf:type owl:NamedIndividual ,
+                                 :ContributorCredit ;
+                        :creditRole :Actor ;
+                        :creditedPerson :JoPaul .
 
 
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Credit5
-:Credit5 rdf:type owl:NamedIndividual ,
-                  :ContributorCredit ;
-         :creditRole :Actor ;
-         :creditedPerson :JoPaul .
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Credit_CityLoop_MayaSen
+:Credit_CityLoop_MayaSen rdf:type owl:NamedIndividual ,
+                                  :ContributorCredit ;
+                         :creditRole :Director ;
+                         :creditedPerson :MayaSen .
+
+
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Credit_LastSignal_JoPaul
+:Credit_LastSignal_JoPaul rdf:type owl:NamedIndividual ,
+                                   :ContributorCredit ;
+                          :creditRole :Writer ;
+                          :creditedPerson :JoPaul .
+
+
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Credit_Riverline_DevRao
+:Credit_Riverline_DevRao rdf:type owl:NamedIndividual ,
+                                  :ContributorCredit ;
+                         :creditRole :Director ;
+                         :creditedPerson :DevRao .
+
+
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Credit_Riverline_MayaSen
+:Credit_Riverline_MayaSen rdf:type owl:NamedIndividual ,
+                                   :ContributorCredit ;
+                          :creditRole :Actor ;
+                          :creditedPerson :MayaSen .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/DevRao
@@ -313,33 +372,6 @@ xsd:duration rdf:type rdfs:Datatype .
 :Drama rdf:type owl:NamedIndividual ,
                 :Genre ;
        rdfs:label "Drama"@en .
-
-
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/E1
-:E1 rdf:type owl:NamedIndividual ,
-             :Episode ;
-    :partOfSeries :CityLoop ;
-    :duration "PT45M"^^xsd:duration ;
-    :episodeNumber 1 ;
-    :title "City Loop - Episode 1" .
-
-
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/E2
-:E2 rdf:type owl:NamedIndividual ,
-             :Episode ;
-    :partOfSeries :CityLoop ;
-    :duration "PT48M"^^xsd:duration ;
-    :episodeNumber 2 ;
-    :title "City Loop - Episode 2" .
-
-
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/E3
-:E3 rdf:type owl:NamedIndividual ,
-             :Episode ;
-    :partOfSeries :CityLoop ;
-    :duration "PT50M"^^xsd:duration ;
-    :episodeNumber 3 ;
-    :title "City Loop - Episode 3" .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/English
@@ -369,33 +401,33 @@ xsd:duration rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/LastSignal
 :LastSignal rdf:type owl:NamedIndividual ,
                      :Film ;
-            :hasCredit :Credit3 ;
+            :hasCredit :Credit_LastSignal_JoPaul ;
             :hasGenre :Documentary ;
             :hasLanguage :English ,
                          :Malayalam ;
-            :hasLicense :LicenseSingapore ;
+            :hasLicense :License_SG_2026 ;
             :duration "PT1H38M"^^xsd:duration ;
             :releaseDate "2025-02-20"^^xsd:date ;
             :title "Last Signal" .
 
 
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/LicenseIndia
-:LicenseIndia rdf:type owl:NamedIndividual ,
-                       :License ;
-              :hasAvailability :Availability1 ;
-              :licensedForRegion :India ;
-              :endDate "2025-12-31"^^xsd:date ;
-              :startDate "2024-01-01"^^xsd:date .
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/License_IN_2024
+:License_IN_2024 rdf:type owl:NamedIndividual ,
+                          :License ;
+                 :hasAvailability :Availability_Riverline_IN ;
+                 :licensedForRegion :India ;
+                 :endDate "2025-12-31"^^xsd:date ;
+                 :startDate "2024-01-01"^^xsd:date .
 
 
-###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/LicenseSingapore
-:LicenseSingapore rdf:type owl:NamedIndividual ,
-                           :License ;
-                  :hasAvailability :Availability2 ,
-                                   :Availability3 ;
-                  :licensedForRegion :Singapore ;
-                  :endDate "2027-12-31"^^xsd:date ;
-                  :startDate "2026-01-01"^^xsd:date .
+###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/License_SG_2026
+:License_SG_2026 rdf:type owl:NamedIndividual ,
+                          :License ;
+                 :hasAvailability :Availability_CityLoop_SG ,
+                                  :Availability_LastSignal_SG ;
+                 :licensedForRegion :Singapore ;
+                 :endDate "2027-12-31"^^xsd:date ;
+                 :startDate "2026-01-01"^^xsd:date .
 
 
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Malayalam
@@ -413,12 +445,12 @@ xsd:duration rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/Riverline
 :Riverline rdf:type owl:NamedIndividual ,
                     :Film ;
-           :hasCredit :Credit1 ,
-                      :Credit2 ;
+           :hasCredit :Credit_Riverline_DevRao ,
+                      :Credit_Riverline_MayaSen ;
            :hasGenre :Drama ;
            :hasLanguage :English ,
                         :Hindi ;
-           :hasLicense :LicenseIndia ;
+           :hasLicense :License_IN_2024 ;
            :duration "PT1H52M"^^xsd:duration ;
            :releaseDate "2024-08-15"^^xsd:date ;
            :title "Riverline" .

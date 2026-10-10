@@ -1,7 +1,11 @@
 # Streaming Catalogue Knowledge Graph - SPARQL queries
-# Run each query separately in GraphDB (SPARQL tab), with the
-# streaming_catalogue repository selected.
+# CSE4007 Semantic Web - Option 2, Case 2C
+#
+# Run each query separately in GraphDB (SPARQL tab) with the
+# streaming_catalogue repository selected (ruleset: RDFS (Optimized)).
 # Copy the PREFIX lines together with the query you want to run.
+# The "Include inferred" toggle (>> icon) switches between explicit
+# and inferred results.
 
 PREFIX :     <http://www.semanticweb.org/visha/ontologies/2026/9/streaming-catalogue/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -9,13 +13,14 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 # ---------------------------------------------------------------
 # Q1. Total number of triples
-# Expected: 220 with "Include inferred" OFF, 342 with it ON
+# Expected: 252 with "Include inferred" OFF (explicit triples)
+#           376 with "Include inferred" ON  (124 inferred by RDFS)
 # ---------------------------------------------------------------
 SELECT (COUNT(*) AS ?triples) WHERE { ?s ?p ?o }
 
 
 # ---------------------------------------------------------------
-# Q2. Which person holds which role on which work
+# Q2. CQ1 - Who contributed to each work, and in what role?
 # Shows the contributor-credit pattern: Maya Sen is Actor on
 # Riverline but Director on City Loop.
 # Expected: 5 rows
@@ -30,9 +35,10 @@ ORDER BY ?person
 
 
 # ---------------------------------------------------------------
-# Q3. Titles available today, with region and availability window
-# "Active" is computed from the dates, not read from a label.
-# Expected (as of Oct 2026): City Loop and Last Signal in Singapore;
+# Q3. CQ2 - Which titles are available today, and in which region?
+# "Active" is computed from the availability dates, not read from
+# the availabilityStatus label.
+# Expected (Oct 2026): City Loop and Last Signal in Singapore.
 # Riverline (India) is excluded because its window ended 2025-12-31.
 # ---------------------------------------------------------------
 SELECT ?title ?region ?from ?until WHERE {
@@ -47,8 +53,8 @@ SELECT ?title ?region ?from ?until WHERE {
 
 
 # ---------------------------------------------------------------
-# Q4. Episodes of City Loop in order, with typed durations
-# Expected: 3 rows (E1 PT45M, E2 PT48M, E3 PT50M)
+# Q4. CQ3 - Which episodes belong to City Loop, in order, and how long are they?
+# Expected: 3 rows (Episode 1 PT45M, Episode 2 PT48M, Episode 3 PT50M)
 # ---------------------------------------------------------------
 SELECT ?num ?title ?dur WHERE {
   ?e :partOfSeries :CityLoop ;
@@ -60,10 +66,53 @@ ORDER BY ?num
 
 
 # ---------------------------------------------------------------
-# Q5. RDFS inference check
+# Q5. CQ6 - Which resources are creative works? (RDFS inference)
 # No individual is directly typed :CreativeWork.
-# Expected: 0 rows with "Include inferred" OFF;
-#           6 rows (Riverline, LastSignal, CityLoop, E1, E2, E3)
-#           with it ON, inferred via rdfs:subClassOf.
+# Expected: 0 rows with "Include inferred" OFF
+#           6 rows with it ON (CityLoop, LastSignal, Riverline,
+#           CityLoop_E1, CityLoop_E2, CityLoop_E3), inferred via
+#           rdfs:subClassOf from Film, Series and Episode.
 # ---------------------------------------------------------------
 SELECT ?work WHERE { ?work a :CreativeWork }
+
+
+# ---------------------------------------------------------------
+# Q6. CQ4 - Which language versions does each title have?
+# Expected: City Loop: English; Last Signal: English, Malayalam;
+#           Riverline: English, Hindi
+# ---------------------------------------------------------------
+SELECT ?title (GROUP_CONCAT(?lang; separator=", ") AS ?languages) WHERE {
+  ?w :title ?title ;
+     :hasLanguage/rdfs:label ?lang .
+}
+GROUP BY ?title
+
+
+# ---------------------------------------------------------------
+# Q7. CQ5 - Which licence covers each title, in which region, and for what period?
+# Expected: City Loop and Last Signal - Singapore 2026-01-01 to 2027-12-31;
+#           Riverline - India 2024-01-01 to 2025-12-31
+# ---------------------------------------------------------------
+SELECT ?title ?region ?licStart ?licEnd WHERE {
+  ?w :title ?title ;
+     :hasLicense ?lic .
+  ?lic :licensedForRegion/rdfs:label ?region ;
+       :startDate ?licStart ;
+       :endDate ?licEnd .
+}
+ORDER BY ?title
+
+
+# ---------------------------------------------------------------
+# Q8. Validation - availability periods that fall OUTSIDE their licence
+# An availability period must lie within its licence period.
+# Expected: 0 rows (no violations)
+# ---------------------------------------------------------------
+SELECT ?availability ?from ?until ?licStart ?licEnd WHERE {
+  ?lic :hasAvailability ?availability ;
+       :startDate ?licStart ;
+       :endDate ?licEnd .
+  ?availability :availableFrom ?from ;
+                :availableUntil ?until .
+  FILTER (?from < ?licStart || ?until > ?licEnd)
+}
