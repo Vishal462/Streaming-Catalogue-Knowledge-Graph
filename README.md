@@ -29,8 +29,6 @@ An RDF knowledge graph and small RDFS vocabulary for a fictional streaming servi
 1. **Syntax:** the file opens in Protégé without errors, and GraphDB imports it with no parse errors.
 2. **Consistency:** in Protégé, **Reasoner → HermiT → Start reasoner**. No inconsistency is reported and no class appears in red.
 3. **Data checks:** after importing into GraphDB, run Q1 (expected triple count) and Q8 (no availability period outside its licence period, 0 rows expected).
-3. Browse the **Classes**, **Object properties**, **Data properties** and **Individuals** tabs.\
-   **View → Render by label (rdfs:label)** shows readable names.
 
 ## Reproduce in GraphDB
 
