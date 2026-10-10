@@ -14,8 +14,8 @@ An RDF knowledge graph and small RDFS vocabulary for a fictional streaming servi
 
 ## Tools
 
-- Protégé [5.6.9] – building the vocabulary and individuals
-- GraphDB Free [11.5.1] – storing the graph, RDFS inference, SPARQL queries and visualisation
+- [Protégé](https://protege.stanford.edu/) [5.6.9] – building the vocabulary and individuals
+- [GraphDB Free](https://graphdb.ontotext.com/) [11.5.1] – storing the graph, RDFS inference, SPARQL queries and visualisation
 
 ## Open in Protégé
 
