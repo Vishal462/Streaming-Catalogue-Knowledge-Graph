@@ -4,11 +4,6 @@
 
 An RDF knowledge graph and small RDFS vocabulary for a fictional streaming service. It models films, a series and its episodes, contributors and their roles, genres, language versions, regional licences and availability periods. Built in Protégé, stored and queried in GraphDB.
 
-<<<<<<< HEAD
-Author: Vishal Agarwal
-
-=======
->>>>>>> 20a928be33297ce106420ec54a97ca364fbdb237
 ## Files
 
 | File | Description |
@@ -17,23 +12,15 @@ Author: Vishal Agarwal
 | `queries.rq` | Eight SPARQL queries (competency questions, inference check, validation) with expected results |
 | `report.pdf` | Report: problem, competency questions, modelling decisions, results and limitations |
 | `screenshots/` | Protégé and GraphDB screenshots of the model, query results and visual graph |
-| `README.md` | This file |
 
 ## Tools
-
-<<<<<<< HEAD
-- [Protégé](https://protege.stanford.edu/) 5.6.9 – building the vocabulary and individuals, HermiT reasoner for consistency checking
-- [GraphDB Free](https://graphdb.ontotext.com/) 11.5.1 – storing the graph, RDFS inference, SPARQL queries and visualisation
-=======
 - [Protégé](https://protege.stanford.edu/) [5.6.9] – building the vocabulary and individuals
 - [GraphDB Free](https://graphdb.ontotext.com/) [11.5.1] – storing the graph, RDFS inference, SPARQL queries and visualisation
->>>>>>> 20a928be33297ce106420ec54a97ca364fbdb237
 
 ## Open in Protégé
 
 1. Open Protégé.
 2. **File → Open** → select `streaming_catalogue_final.ttl`.
-<<<<<<< HEAD
 3. Browse the **Classes**, **Object properties**, **Data properties** and **Individuals** tabs.
    **View → Render by label (rdfs:label)** shows readable names.
 
@@ -41,11 +28,9 @@ Author: Vishal Agarwal
 
 1. **Syntax:** the file opens in Protégé without errors, and GraphDB imports it with no parse errors.
 2. **Consistency:** in Protégé, **Reasoner → HermiT → Start reasoner**. No inconsistency is reported and no class appears in red.
-3. **Data checks:** after importing into GraphDB, run Q1 (expected triple count) and Q8 (no availability period outside its licence period – expected 0 rows).
-=======
+3. **Data checks:** after importing into GraphDB, run Q1 (expected triple count) and Q8 (no availability period outside its licence period, 0 rows expected).
 3. Browse the **Classes**, **Object properties**, **Data properties** and **Individuals** tabs.\
    **View → Render by label (rdfs:label)** shows readable names.
->>>>>>> 20a928be33297ce106420ec54a97ca364fbdb237
 
 ## Reproduce in GraphDB
 
@@ -76,10 +61,5 @@ Author: Vishal Agarwal
 
 ## Acknowledgements
 
-<<<<<<< HEAD
 - Protégé (Stanford University) and GraphDB (Ontotext) were used to build, validate and query the model.
 - Claude (Anthropic) and ChatGPT (OpenAI) were used for discussion of modelling options, troubleshooting Protégé and GraphDB, checking the triple count, and suggesting SPARQL queries. The modelling, implementation and report are my own work. Details are in the report.
-=======
-- Protégé (Stanford University) and GraphDB (Ontotext) were used to build and query the model.
-- Claude (Anthropic) and ChatGPT (OpenAI) was used for discussion of modelling options, troubleshooting Protégé and GraphDB, checking the triple count, and suggesting SPARQL queries. The modelling, implementation and report are my own work. Details are in the report.
->>>>>>> 20a928be33297ce106420ec54a97ca364fbdb237
